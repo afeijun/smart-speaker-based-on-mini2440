@@ -1,0 +1,101 @@
+0、绑定
+app发送：{“cmd”：“bind”，“appid”：“101”，“deviceid”：“001”}；
+服务器回复：{“cmd”：“bind_success”}；
+
+0、APP判断是否已经绑定
+app发送：{“cmd”：“search_bind”，“appid”：“101”}；
+服务器回复：{“cmd”：“reply_bind”， “result”：“yes”}；
+
+1、保活消息
+客户端：{“cmd”：“info”，“status”：“alive”，“deviceid”：“001”}；
+
+2、开始播放
+app发送：{“cmd”：“app_start”}；
+服务器发送：{“cmd”：“start”}；
+客户端回复：{“cmd”：“reply”，“result”：“start_success”}；
+服务器回复：{“cmd”：“app_reply”，“result”：“start_success”}；      “result”：“offline”
+
+3、结束播放
+app发送：{“cmd”：“app_stop”}；
+服务器发送：{“cmd”：“stop”}；
+客户端：{“cmd”：“reply”，“result”：“stop_success”}；
+服务器回复：{“cmd”：“app_reply”，“result”：“stop_success”}；
+
+4、暂停播放
+app发送：{“cmd”：“app_suspend”}；
+服务器：{“cmd”：“suspend”}；
+客户端：{“cmd”：“reply”，“result”：“suspend_success”}；
+服务器回复：{“cmd”：“app_reply”，“result”：“suspend_success”}；
+
+5、继续播放
+app发送：{“cmd”：“app_continue”}；
+服务器：{“cmd”：“continue”}；
+客户端：{“cmd”：“reply”，“result”：“continue_success”}；
+服务器回复：{“cmd”：“app_reply”，“result”：“continue_success”}；
+
+6、上一首
+app发送：{“cmd”：“app_prior”}；
+服务器：{“cmd”：“prior”}；
+客户端：{“cmd”：“reply”，“result”：“success”}；
+服务器回复：{“cmd”：“app_reply”，“result”：“success”}；
+
+7、下一首
+app发送：{“cmd”：“app_next”}；
+服务器：{“cmd”：“next”}；
+客户端：{“cmd”：“reply”，“result”：“success”}；
+服务器回复：{“cmd”：“app_reply”，“result”：“success”}；
+
+8、增加音量
+app发送：{“cmd”：“app_voice_up”}；
+服务器：{“cmd”：“voice_up”}；
+客户端：{“cmd”：“reply”，“result”：“success”}；
+服务器回复：{“cmd”：“app_reply”，“result”：“success”}；       result：off_line
+
+9、减小音量
+app发送：{“cmd”：“app_voice_down”}；
+服务器：{“cmd”：“voice_down”}；
+客户端：{“cmd”：“reply”，“result”：“success”}；
+服务器回复：{“cmd”：“app_reply”，“result”：“success”}；
+
+10、顺序播放
+app发送：{“cmd”：“app_sequence”}；
+服务器：{“cmd”：“sequence”}；
+客户端：{“cmd”：“reply”，“result”：“success”}；
+服务器回复：{“cmd”：“app_reply”，“result”：“success”}；
+
+11、随机播放
+app发送：{“cmd”：“app_random”}；
+服务器：{“cmd”：“random”}；
+客户端：{“cmd”：“reply”，“result”：“success”}；
+服务器回复：{“cmd”：“app_reply”，“result”：“success”}；
+
+12、单曲播放
+app发送：{“cmd”：“app_circle”}；
+服务器：{“cmd”：“circle”}；
+客户端：{“cmd”：“reply”，“result”：“success”}；
+服务器回复：{“cmd”：“app_reply”，“result”：“success”}；
+
+13、获取播放器状态
+服务器：{“cmd”：“get”}；
+客户端：{“cmd”：“reply_status”, “status”：“start”，“music”：“xx.mp3”， “voice”：50}； start suspend stop
+服务器：{“cmd”：“app_reply_status”，“status”：“start”，“music”：“xx.mp3”， “voice”：50}；
+
+
+14、获取所有歌曲
+app发送：{“cmd”：“app_music”}；
+服务器：{“cmd”：“music”}；
+客户端：{“cmd”：“reply_music”， “music”：[“1.mp3”，“2.mp3”，“3.mp3”]}；
+服务器回复：{“cmd”：“app_reply_music”，“music”：[“1.mp3”，“2.mp3”，“3.mp3”]}；
+如果不在线服务器回复：服务器回复：{“cmd”：“app_reply”，“result”：“off_line”}；
+
+15、APP下线
+app发送：{“cmd”，“app_off_line”}；
+
+
+6个按键
+1 开始播放  2  结束播放  3 暂停播放   4 继续播放   5  上一首     6   下一首
+
+
+
+setenv bootcmd ‘nboot 0x30007fc0 0 0x00060000;bootm’  
+setenv bootcmd 'nboot 0x30007fc0 0 0x00060000;bootm'
